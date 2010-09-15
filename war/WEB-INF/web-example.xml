@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>AdminCacheClear</servlet-name>
+		<servlet-class>cc.breeze.passing.servlet.AdminCacheClearServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MTSearchCGI</servlet-name>
+		<servlet-class>cc.breeze.passing.servlet.MTSearchCGIServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>StaticContent</servlet-name>
+		<servlet-class>cc.breeze.passing.servlet.StaticContentServlet</servlet-class>
+		<init-param>
+			<param-name>zip-filename-format</param-name>
+			<param-value>static-contents/passing-static-%s.zip</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MTSearchCGI</servlet-name>
+		<url-pattern>/mt/mt-search.cgi</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AdminCacheClear</servlet-name>
+		<url-pattern>/admin/cache/clear</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>StaticContent</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<security-constraint>
+        <web-resource-name>admin-area</web-resource-name>
+		<web-resource-collection>
+			<url-pattern>/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+</web-app>

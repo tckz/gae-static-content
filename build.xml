@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project name="gae-static-content" default="run" basedir=".">
+	<property name="sdk.dir" location="../appengine-java-sdk" />
+
+	<import file="${sdk.dir}/config/user/ant-macros.xml" />
+
+	<path id="project.classpath">
+		<pathelement path="war/WEB-INF/classes" />
+		<fileset dir="war/WEB-INF/lib">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${sdk.dir}/lib">
+			<include name="shared/**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="copyjars"
+		description="Copies the App Engine JARs to the WAR.">
+		<copy
+			todir="war/WEB-INF/lib"
+			flatten="true">
+			<fileset dir="${sdk.dir}/lib/user">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="compile" depends="copyjars"
+		description="Compiles Java source and copies other source files to the WAR.">
+		<mkdir dir="war/WEB-INF/classes" />
+		<copy todir="war/WEB-INF/classes">
+			<fileset dir="src">
+				<exclude name="**/*.java" />
+				<exclude name="**/*.swp" />
+			</fileset>
+		</copy>
+		<javac
+			srcdir="src"
+			destdir="war/WEB-INF/classes"
+			classpathref="project.classpath"
+			debug="on" />
+	</target>
+
+	<target name="run" depends="compile"
+		description="Starts the development server.">
+		<dev_appserver war="war" port="3000" address="0.0.0.0">
+		</dev_appserver>
+	</target>
+
+</project>

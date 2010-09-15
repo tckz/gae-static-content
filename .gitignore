@@ -1,0 +1,6 @@
+/temp*
+/war/WEB-INF/classes/
+/war/WEB-INF/lib/
+/war/static-contents/
+/my/*
+*.swp
