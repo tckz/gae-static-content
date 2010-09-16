@@ -2,6 +2,7 @@
 /war/WEB-INF/classes/
 /war/WEB-INF/lib/
 /war/WEB-INF/appengine-web.xml
+/war/WEB-INF/web.xml
 /war/static-contents/
 /my/*
 *.swp
