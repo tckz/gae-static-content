@@ -19,7 +19,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-class>cc.breeze.passing.servlet.StaticContentServlet</servlet-class>
 		<init-param>
 			<param-name>zip-filename-format</param-name>
-			<param-value>static-contents/passing-static-%s.zip</param-value>
+			<param-value>static-contents/static-content-test-%s.zip</param-value>
 		</init-param>
 	</servlet>
 
