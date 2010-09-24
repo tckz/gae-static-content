@@ -14,8 +14,7 @@
 		</fileset>
 	</path>
 
-	<target name="copyjars"
-		description="Copies the App Engine JARs to the WAR.">
+	<target name="copyjars">
 		<copy
 			todir="war/WEB-INF/lib"
 			flatten="true">
@@ -25,8 +24,7 @@
 		</copy>
 	</target>
 
-	<target name="compile" depends="copyjars"
-		description="Compiles Java source and copies other source files to the WAR.">
+	<target name="compile" depends="copyjars">
 		<mkdir dir="war/WEB-INF/classes" />
 		<copy todir="war/WEB-INF/classes">
 			<fileset dir="src">
@@ -41,10 +39,13 @@
 			debug="on" />
 	</target>
 
-	<target name="run" depends="compile"
-		description="Starts the development server.">
+	<target name="run" depends="compile">
 		<dev_appserver war="war" port="3000" address="0.0.0.0">
 		</dev_appserver>
+	</target>
+
+	<target name="deploy" depends="compile">
+		<appcfg action="update" war="war" />
 	</target>
 
 </project>
