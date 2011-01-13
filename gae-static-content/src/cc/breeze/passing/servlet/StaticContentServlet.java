@@ -134,7 +134,7 @@ public class StaticContentServlet extends HttpServlet {
 		if (sc != null && cache != null) {
 			try {
 				cache.put(key, sc.toMap());
-			} catch (Exception  e) {
+			} catch (RuntimeException  e) {
 				// Ignore.
 				// Possible reasons:
 				//   o The object is too large to cache.
