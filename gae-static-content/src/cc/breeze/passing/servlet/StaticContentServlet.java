@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.memcache.jsr107cache.GCacheException;
-
+import com.google.appengine.api.memcache.MemcacheServiceException;
 import cc.breeze.passing.model.StaticContent;
 
 @SuppressWarnings("serial")
@@ -136,7 +135,7 @@ public class StaticContentServlet extends HttpServlet {
 		if (sc != null && cache != null) {
 			try {
 				cache.put(key, sc.toMap());
-			} catch (GCacheException  e) {
+			} catch (MemcacheServiceException  e) {
 				// Ignore.
 				// Possible reasons:
 				//   o The object is too large to cache.
