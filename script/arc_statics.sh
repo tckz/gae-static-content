@@ -67,7 +67,7 @@ do
 done
 
 echo "Creating $arc" 1>&2
-(cd "$path_documents" && tar cfz "$arc" --exclude-from="$opt_exclude_txt" *)
+(cd "$path_documents" && tar cfz "$arc" -h --exclude-from="$opt_exclude_txt" *)
 
 /bin/rm -f "$path_out/$opt_prefix_zip-"*
 /bin/rm -f "$path_tmp/$prefix_filelist-"*
